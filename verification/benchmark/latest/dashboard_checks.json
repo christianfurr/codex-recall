@@ -1,0 +1,11 @@
+{
+  "browser": "Chrome headless",
+  "query_rows": 80,
+  "no_overlap_rows": 10,
+  "top5_misses": 11,
+  "npm_misses": 1,
+  "target_and_returned_evidence_visible": true,
+  "mobile_page_overflow": false,
+  "javascript_errors": 0,
+  "external_dependencies": 0
+}

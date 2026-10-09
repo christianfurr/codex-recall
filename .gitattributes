@@ -1,0 +1,2 @@
+# Preserve the standard CRLF emitted by Python's CSV writer in raw evidence.
+*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

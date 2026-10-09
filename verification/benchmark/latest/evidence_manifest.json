@@ -1,0 +1,113 @@
+{
+  "scope": "Synthetic benchmark artifacts and current reproduction scripts; database binaries remain local in ignored data/.",
+  "files": {
+    "scripts/benchmark_memory.py": {
+      "bytes": 41915,
+      "sha256": "8425069df1fef58d39e1591c1dec01b4c3abfccd1464148116eab4397b8a63c3"
+    },
+    "scripts/evaluate_recall.py": {
+      "bytes": 17819,
+      "sha256": "5551c496f48b5a2ff9f147d07f7739ea0cbe398a41384d09c97e0b46ecfda887"
+    },
+    "scripts/plot_benchmark.py": {
+      "bytes": 16766,
+      "sha256": "0f64f9d6d8072c36ab44948c9f0c94db898f0b908d547075170621810cc15814"
+    },
+    "scripts/profile_memory.py": {
+      "bytes": 3588,
+      "sha256": "8add92c781e845dfee93718b76413c2f29c9b82a8156f9f0ce071daf47daff7c"
+    },
+    "scripts/recall_queries.json": {
+      "bytes": 36587,
+      "sha256": "7843880f6083c871c94df8066a8906d4811d0111f3fb897497ebf42e277e679c"
+    },
+    "verification/benchmark/latest/charts/benchmark-corpus.png": {
+      "bytes": 106346,
+      "sha256": "70497e4de6fc9a429832296ce6430592949802e21bc58369169a6f14f03bdd5e"
+    },
+    "verification/benchmark/latest/charts/benchmark-corpus.svg": {
+      "bytes": 22998,
+      "sha256": "ab23a478314bd9fee9b09413bf6733c6695031aa4eb3f129caf804cc5e02c56e"
+    },
+    "verification/benchmark/latest/charts/benchmark-dashboard.html": {
+      "bytes": 284623,
+      "sha256": "5879e7cb64db654348eecf1f7f9163bbf7ca608cc0b3529a4a8b9aac766cc275"
+    },
+    "verification/benchmark/latest/charts/benchmark-latency.png": {
+      "bytes": 159767,
+      "sha256": "d68ef0e113e9f6a9656c9582849e8bcd3c2f2f5e492006863d4aac8c7cd0cb44"
+    },
+    "verification/benchmark/latest/charts/benchmark-latency.svg": {
+      "bytes": 91955,
+      "sha256": "658955d91d1882292f05965c3f068f8123f07890a8ce75682bbaa61f27355611"
+    },
+    "verification/benchmark/latest/charts/benchmark-overview.png": {
+      "bytes": 295534,
+      "sha256": "7fc642cd9c4d6605127423f1328192bd341406826bfd4089cfd85bea50b9a712"
+    },
+    "verification/benchmark/latest/charts/benchmark-overview.svg": {
+      "bytes": 59613,
+      "sha256": "56d2666ad918a9e0820c86e0b533edde3533257cb00c71c3c8cb9a2249cfa757"
+    },
+    "verification/benchmark/latest/cli_validation.json": {
+      "bytes": 1693,
+      "sha256": "bf706e29eef9ad25fc2e88234cf650498ce06fa7d6bddcc4d3b42c938c6c837c"
+    },
+    "verification/benchmark/latest/corpus.jsonl": {
+      "bytes": 6128457,
+      "sha256": "fd7c5153be650ce91bb5684edaf7a30ff2b20fc839cac77f4c0cb9e3dff791e8"
+    },
+    "verification/benchmark/latest/dashboard_checks.json": {
+      "bytes": 257,
+      "sha256": "7e9161e559ebb0dc72c188abe3c54dc6b9ffaed55eed3313a277fc171fede46e"
+    },
+    "verification/benchmark/latest/fixture_manifest.json": {
+      "bytes": 33481,
+      "sha256": "01d6558f7b73ff02c8dc1877af5797c645932587c6454680fff1c632fe845752"
+    },
+    "verification/benchmark/latest/fixture_plan.json": {
+      "bytes": 23859,
+      "sha256": "dfbf59b9f5d27a0d70023ba94983fca3ffe6a9369f31ead26b83f5059957de8e"
+    },
+    "verification/benchmark/latest/isolation_check.json": {
+      "bytes": 121,
+      "sha256": "f8874a429dcd704d7c5f6c99a069525d3fe4e399697f0b61ba0ec03da9811cb5"
+    },
+    "verification/benchmark/latest/latency.csv": {
+      "bytes": 891243,
+      "sha256": "587e2c9caa4e938ef4f86605b06198b6176b4133873add12832ed926e626d858"
+    },
+    "verification/benchmark/latest/memory_profile.json": {
+      "bytes": 984,
+      "sha256": "d88246269e6aab18b6df85db60b5162f574c51105f391cda97c784db67b74fca"
+    },
+    "verification/benchmark/latest/metrics.json": {
+      "bytes": 21593,
+      "sha256": "04a70f49fc85dbb0faaf7b95e35f2bdbf31976e4e945e7752b9fe5b4f87f7c75"
+    },
+    "verification/benchmark/latest/operation_checks.json": {
+      "bytes": 2005,
+      "sha256": "d0cff64bee03e11144e60ecaf44348013506dc0bdb7cc6eaeb22596cb07a13b0"
+    },
+    "verification/benchmark/latest/quality.json": {
+      "bytes": 147722,
+      "sha256": "00d6fbee580302449e3b586394bb4df3bb32c40012c6313fefbc8a7a28fe2a7a"
+    },
+    "verification/benchmark/latest/query_results.csv": {
+      "bytes": 25027,
+      "sha256": "a514a3810c8d22f36da221c3be2a8f8e0b325ae4f168c3c251794e5ed47b2641"
+    },
+    "verification/benchmark/latest/run_notes.txt": {
+      "bytes": 1257,
+      "sha256": "458a777aa4efae15ad47138e1cfa1e2c775919cc97f9216964a32d5835700f45"
+    },
+    "verification/benchmark/latest/scale.csv": {
+      "bytes": 965,
+      "sha256": "20df0cc1698cc6c1b68436e03f4957522ce4ba9138aef2dd0f7c1404219f83f8"
+    },
+    "verification/benchmark/latest/unit_test_result.json": {
+      "bytes": 167,
+      "sha256": "ac63da297979a704bd4284d5a1a0d4b00e9c14ebed3d5376c05c9860f727af8f"
+    }
+  }
+}

@@ -1,0 +1,1375 @@
+{
+  "schema_version": 1,
+  "label_notes": "80 queries were authored from the unqueried fixture plan and frozen before the first relevance evaluation. Facts are synthetic and repeat eight topic templates across six project contexts. Queries were manually composed using the disclosed facts, not sampled from real users or independently judged by humans. Several queries reuse facts; this is a deliberately diagnostic query mix. Exact-keyword cases use natural details such as lockfiles, hourly, and keyring rather than artificial fixture markers. Paraphrase questions intentionally test a lexical engine's limitation. Only designated factual targets are labelled; broad ambiguous queries are excluded from hit/MRR averages.",
+  "queries": [
+    {
+      "id": "q01",
+      "group": "exact_keyword",
+      "query": "lockfiles",
+      "target_keys": [
+        "atlas.package"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": "Selective natural detail or named term; easier than an independently worded question. No fixture-key markers are queried."
+    },
+    {
+      "id": "q02",
+      "group": "exact_keyword",
+      "query": "meshes",
+      "target_keys": [
+        "beacon.sfu"
+      ],
+      "filters": {
+        "project": "beacon"
+      },
+      "notes": "Selective natural detail or named term; easier than an independently worded question. No fixture-key markers are queried."
+    },
+    {
+      "id": "q03",
+      "group": "exact_keyword",
+      "query": "verification",
+      "target_keys": [
+        "cascade.auth"
+      ],
+      "filters": {
+        "project": "cascade"
+      },
+      "notes": "Selective natural detail or named term; easier than an independently worded question. No fixture-key markers are queried."
+    },
+    {
+      "id": "q04",
+      "group": "exact_keyword",
+      "query": "cursors",
+      "target_keys": [
+        "drift.cache"
+      ],
+      "filters": {
+        "project": "drift"
+      },
+      "notes": "Selective natural detail or named term; easier than an independently worded question. No fixture-key markers are queried."
+    },
+    {
+      "id": "q05",
+      "group": "exact_keyword",
+      "query": "eu-west",
+      "target_keys": [
+        "atlas.deployment"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": "Selective natural detail or named term; easier than an independently worded question. No fixture-key markers are queried."
+    },
+    {
+      "id": "q06",
+      "group": "exact_keyword",
+      "query": "jalapeño",
+      "target_keys": [
+        "beacon.unicode"
+      ],
+      "filters": {
+        "project": "beacon"
+      },
+      "notes": "Selective natural detail or named term; easier than an independently worded question. No fixture-key markers are queried."
+    },
+    {
+      "id": "q07",
+      "group": "exact_keyword",
+      "query": "hourly",
+      "target_keys": [
+        "cascade.backup"
+      ],
+      "filters": {
+        "project": "cascade"
+      },
+      "notes": "Selective natural detail or named term; easier than an independently worded question. No fixture-key markers are queried."
+    },
+    {
+      "id": "q08",
+      "group": "exact_keyword",
+      "query": "keyring",
+      "target_keys": [
+        "global.security"
+      ],
+      "filters": {},
+      "notes": "Selective natural detail or named term; easier than an independently worded question. No fixture-key markers are queried."
+    },
+    {
+      "id": "q09",
+      "group": "phrase",
+      "query": "\"upstream compatibility\"",
+      "target_keys": [
+        "forge.package"
+      ],
+      "filters": {
+        "project": "forge"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q10",
+      "group": "phrase",
+      "query": "\"client uplink bandwidth\"",
+      "target_keys": [
+        "ember.sfu"
+      ],
+      "filters": {
+        "project": "ember"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q11",
+      "group": "phrase",
+      "query": "\"server side membership\"",
+      "target_keys": [
+        "drift.auth"
+      ],
+      "filters": {
+        "project": "drift"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q12",
+      "group": "phrase",
+      "query": "\"fifteen minute TTL\"",
+      "target_keys": [
+        "atlas.cache"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q13",
+      "group": "phrase",
+      "query": "\"production egress\"",
+      "target_keys": [
+        "beacon.deployment"
+      ],
+      "filters": {
+        "project": "beacon"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q14",
+      "group": "phrase",
+      "query": "\"restore rehearsal\"",
+      "target_keys": [
+        "forge.backup"
+      ],
+      "filters": {
+        "project": "forge"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q15",
+      "group": "phrase",
+      "query": "\"repeated distractor text\"",
+      "target_keys": [
+        "cascade.ranking"
+      ],
+      "filters": {
+        "project": "cascade"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q16",
+      "group": "phrase",
+      "query": "\"operating system keyring\"",
+      "target_keys": [
+        "global.security"
+      ],
+      "filters": {},
+      "notes": ""
+    },
+    {
+      "id": "q17",
+      "group": "phrase",
+      "query": "\"JSON RPC\"",
+      "target_keys": [
+        "machine.logs"
+      ],
+      "filters": {},
+      "notes": ""
+    },
+    {
+      "id": "q18",
+      "group": "phrase",
+      "query": "\"virtual environments\"",
+      "target_keys": [
+        "machine.python"
+      ],
+      "filters": {},
+      "notes": ""
+    },
+    {
+      "id": "q19",
+      "group": "multi_term",
+      "query": "Bun script upstream",
+      "target_keys": [
+        "beacon.package"
+      ],
+      "filters": {
+        "project": "beacon"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q20",
+      "group": "multi_term",
+      "query": "WebRTC classroom uplink",
+      "target_keys": [
+        "cascade.sfu"
+      ],
+      "filters": {
+        "project": "cascade"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q21",
+      "group": "multi_term",
+      "query": "Clerk membership upgrade",
+      "target_keys": [
+        "ember.auth"
+      ],
+      "filters": {
+        "project": "ember"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q22",
+      "group": "multi_term",
+      "query": "SQLite reconnect fifteen",
+      "target_keys": [
+        "forge.cache"
+      ],
+      "filters": {
+        "project": "forge"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q23",
+      "group": "multi_term",
+      "query": "eu central ingress",
+      "target_keys": [
+        "drift.deployment"
+      ],
+      "filters": {
+        "project": "drift"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q24",
+      "group": "multi_term",
+      "query": "incremental snapshots SQLite",
+      "target_keys": [
+        "forge.backup"
+      ],
+      "filters": {
+        "project": "forge"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q25",
+      "group": "multi_term",
+      "query": "BM25 concise favor",
+      "target_keys": [
+        "atlas.ranking"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q26",
+      "group": "multi_term",
+      "query": "integration boundaries deterministic",
+      "target_keys": [
+        "global.tests"
+      ],
+      "filters": {},
+      "notes": ""
+    },
+    {
+      "id": "q27",
+      "group": "multi_term",
+      "query": "stdout stderr MCP",
+      "target_keys": [
+        "machine.logs"
+      ],
+      "filters": {},
+      "notes": ""
+    },
+    {
+      "id": "q28",
+      "group": "multi_term",
+      "query": "existing JavaScript lockfile",
+      "target_keys": [
+        "global.bun"
+      ],
+      "filters": {},
+      "notes": ""
+    },
+    {
+      "id": "q29",
+      "group": "prefix",
+      "query": "lockfil* execut*",
+      "target_keys": [
+        "atlas.package"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q30",
+      "group": "prefix",
+      "query": "websock* verif*",
+      "target_keys": [
+        "beacon.auth"
+      ],
+      "filters": {
+        "project": "beacon"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q31",
+      "group": "prefix",
+      "query": "reconnec* cursor* TTL",
+      "target_keys": [
+        "cascade.cache"
+      ],
+      "filters": {
+        "project": "cascade"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q32",
+      "group": "prefix",
+      "query": "egres* allowli* us west",
+      "target_keys": [
+        "forge.deployment"
+      ],
+      "filters": {
+        "project": "forge"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q33",
+      "group": "prefix",
+      "query": "localiz* naïv*",
+      "target_keys": [
+        "drift.unicode"
+      ],
+      "filters": {
+        "project": "drift"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q34",
+      "group": "prefix",
+      "query": "recover* rehears* nightly",
+      "target_keys": [
+        "atlas.backup"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": ""
+    },
+    {
+      "id": "q35",
+      "group": "prefix",
+      "query": "diagnost* std*",
+      "target_keys": [
+        "machine.logs"
+      ],
+      "filters": {},
+      "notes": ""
+    },
+    {
+      "id": "q36",
+      "group": "prefix",
+      "query": "keyrin* creden*",
+      "target_keys": [
+        "global.security"
+      ],
+      "filters": {},
+      "notes": ""
+    },
+    {
+      "id": "q37",
+      "group": "context_filter",
+      "query": "upstream compatibility lockfiles",
+      "target_keys": [
+        "atlas.package"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": "The same topic exists in six projects; the project context identifies the applicable decision."
+    },
+    {
+      "id": "q38",
+      "group": "context_filter",
+      "query": "upstream compatibility lockfiles",
+      "target_keys": [
+        "beacon.package"
+      ],
+      "filters": {
+        "project": "beacon"
+      },
+      "notes": "The same topic exists in six projects; the project context identifies the applicable decision."
+    },
+    {
+      "id": "q39",
+      "group": "context_filter",
+      "query": "upstream compatibility lockfiles",
+      "target_keys": [
+        "cascade.package"
+      ],
+      "filters": {
+        "project": "cascade"
+      },
+      "notes": "The same topic exists in six projects; the project context identifies the applicable decision."
+    },
+    {
+      "id": "q40",
+      "group": "context_filter",
+      "query": "upstream compatibility lockfiles",
+      "target_keys": [
+        "drift.package"
+      ],
+      "filters": {
+        "project": "drift"
+      },
+      "notes": "The same topic exists in six projects; the project context identifies the applicable decision."
+    },
+    {
+      "id": "q41",
+      "group": "context_filter",
+      "query": "upstream compatibility lockfiles",
+      "target_keys": [
+        "ember.package"
+      ],
+      "filters": {
+        "project": "ember"
+      },
+      "notes": "The same topic exists in six projects; the project context identifies the applicable decision."
+    },
+    {
+      "id": "q42",
+      "group": "context_filter",
+      "query": "upstream compatibility lockfiles",
+      "target_keys": [
+        "forge.package"
+      ],
+      "filters": {
+        "project": "forge"
+      },
+      "notes": "The same topic exists in six projects; the project context identifies the applicable decision."
+    },
+    {
+      "id": "q43",
+      "group": "context_filter",
+      "query": "operating system keyring",
+      "target_keys": [
+        "global.security"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": "Includes explicit scope/category or inherited global/machine context where specified."
+    },
+    {
+      "id": "q44",
+      "group": "context_filter",
+      "query": "stdout stderr JSON RPC",
+      "target_keys": [
+        "machine.logs"
+      ],
+      "filters": {
+        "project": "beacon"
+      },
+      "notes": "Includes explicit scope/category or inherited global/machine context where specified."
+    },
+    {
+      "id": "q45",
+      "group": "context_filter",
+      "query": "progress outcome",
+      "target_keys": [
+        "global.communication"
+      ],
+      "filters": {
+        "scope": "global",
+        "category": "preferences"
+      },
+      "notes": "Includes explicit scope/category or inherited global/machine context where specified."
+    },
+    {
+      "id": "q46",
+      "group": "context_filter",
+      "query": "runtime pinned configuration",
+      "target_keys": [
+        "machine.runtime"
+      ],
+      "filters": {
+        "scope": "machine",
+        "project": "cascade"
+      },
+      "notes": "Includes explicit scope/category or inherited global/machine context where specified."
+    },
+    {
+      "id": "q47",
+      "group": "context_filter",
+      "query": "monthly snapshots",
+      "target_keys": [
+        "ember.backup"
+      ],
+      "filters": {
+        "project": "ember",
+        "category": "development_conventions",
+        "scope": "project"
+      },
+      "notes": "Includes explicit scope/category or inherited global/machine context where specified."
+    },
+    {
+      "id": "q48",
+      "group": "context_filter",
+      "query": "WebRTC SFU support calls",
+      "target_keys": [
+        "ember.sfu"
+      ],
+      "filters": {
+        "project": "ember",
+        "category": "project_decisions",
+        "scope": "project"
+      },
+      "notes": "Includes explicit scope/category or inherited global/machine context where specified."
+    },
+    {
+      "id": "q49",
+      "group": "malformed_unicode",
+      "query": "RéUNION CAFÉ",
+      "target_keys": [
+        "atlas.unicode"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": "Input normalization/sanitization or Unicode tokenization stress; query syntax is not passed through as SQL."
+    },
+    {
+      "id": "q50",
+      "group": "malformed_unicode",
+      "query": "naïve façade",
+      "target_keys": [
+        "drift.unicode"
+      ],
+      "filters": {
+        "project": "drift"
+      },
+      "notes": "Input normalization/sanitization or Unicode tokenization stress; query syntax is not passed through as SQL."
+    },
+    {
+      "id": "q51",
+      "group": "malformed_unicode",
+      "query": "Ｂｕｎ ｌｏｃｋｆｉｌｅｓ",
+      "target_keys": [
+        "atlas.package"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": "Input normalization/sanitization or Unicode tokenization stress; query syntax is not passed through as SQL."
+    },
+    {
+      "id": "q52",
+      "group": "malformed_unicode",
+      "query": "\"বাংলা পরীক্ষা\"",
+      "target_keys": [
+        "cascade.unicode"
+      ],
+      "filters": {
+        "project": "cascade"
+      },
+      "notes": "Input normalization/sanitization or Unicode tokenization stress; query syntax is not passed through as SQL."
+    },
+    {
+      "id": "q53",
+      "group": "malformed_unicode",
+      "query": "\"東京 会議\"",
+      "target_keys": [
+        "ember.unicode"
+      ],
+      "filters": {
+        "project": "ember"
+      },
+      "notes": "Input normalization/sanitization or Unicode tokenization stress; query syntax is not passed through as SQL."
+    },
+    {
+      "id": "q54",
+      "group": "malformed_unicode",
+      "query": "CREME BRULEE",
+      "target_keys": [
+        "forge.unicode"
+      ],
+      "filters": {
+        "project": "forge"
+      },
+      "notes": "Input normalization/sanitization or Unicode tokenization stress; query syntax is not passed through as SQL."
+    },
+    {
+      "id": "q55",
+      "group": "malformed_unicode",
+      "query": "\"mañana jalapeño",
+      "target_keys": [
+        "beacon.unicode"
+      ],
+      "filters": {
+        "project": "beacon"
+      },
+      "notes": "Input normalization/sanitization or Unicode tokenization stress; query syntax is not passed through as SQL."
+    },
+    {
+      "id": "q56",
+      "group": "malformed_unicode",
+      "query": "Clerk:(membership) +verification -DROP OR upgrade",
+      "target_keys": [
+        "forge.auth"
+      ],
+      "filters": {
+        "project": "forge"
+      },
+      "notes": "Input normalization/sanitization or Unicode tokenization stress; query syntax is not passed through as SQL."
+    },
+    {
+      "id": "q57",
+      "group": "malformed_unicode",
+      "query": "-- ingress ; allowlist )) eu-west",
+      "target_keys": [
+        "atlas.deployment"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": "Input normalization/sanitization or Unicode tokenization stress; query syntax is not passed through as SQL."
+    },
+    {
+      "id": "q58",
+      "group": "malformed_unicode",
+      "query": "\"fifteen minute TTL\"\n((((SQLite)))",
+      "target_keys": [
+        "beacon.cache"
+      ],
+      "filters": {
+        "project": "beacon"
+      },
+      "notes": "Input normalization/sanitization or Unicode tokenization stress; query syntax is not passed through as SQL."
+    },
+    {
+      "id": "q59",
+      "group": "paraphrase_shared_words",
+      "query": "What makes npm a secondary choice for builds?",
+      "target_keys": [
+        "atlas.package"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": "Independently worded fact question with some indexed-word overlap; no synonym engine is present."
+    },
+    {
+      "id": "q60",
+      "group": "paraphrase_shared_words",
+      "query": "Why did we pick an SFU for webinars?",
+      "target_keys": [
+        "beacon.sfu"
+      ],
+      "filters": {
+        "project": "beacon"
+      },
+      "notes": "Independently worded fact question with some indexed-word overlap; no synonym engine is present."
+    },
+    {
+      "id": "q61",
+      "group": "paraphrase_shared_words",
+      "query": "Why check membership before opening the websocket?",
+      "target_keys": [
+        "cascade.auth"
+      ],
+      "filters": {
+        "project": "cascade"
+      },
+      "notes": "Independently worded fact question with some indexed-word overlap; no synonym engine is present."
+    },
+    {
+      "id": "q62",
+      "group": "paraphrase_shared_words",
+      "query": "Where do reconnect positions live and how long are they kept?",
+      "target_keys": [
+        "drift.cache"
+      ],
+      "filters": {
+        "project": "drift"
+      },
+      "notes": "Independently worded fact question with some indexed-word overlap; no synonym engine is present."
+    },
+    {
+      "id": "q63",
+      "group": "paraphrase_shared_words",
+      "query": "Can production accept inbound traffic from the public internet?",
+      "target_keys": [
+        "ember.deployment"
+      ],
+      "filters": {
+        "project": "ember"
+      },
+      "notes": "Independently worded fact question with some indexed-word overlap; no synonym engine is present."
+    },
+    {
+      "id": "q64",
+      "group": "paraphrase_shared_words",
+      "query": "How are hourly backups practiced without replacing the live store?",
+      "target_keys": [
+        "cascade.backup"
+      ],
+      "filters": {
+        "project": "cascade"
+      },
+      "notes": "Independently worded fact question with some indexed-word overlap; no synonym engine is present."
+    },
+    {
+      "id": "q65",
+      "group": "paraphrase_shared_words",
+      "query": "Why should BM25 favor short choices over word repetition?",
+      "target_keys": [
+        "atlas.ranking"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": "Independently worded fact question with some indexed-word overlap; no synonym engine is present."
+    },
+    {
+      "id": "q66",
+      "group": "paraphrase_shared_words",
+      "query": "How should progress reports put results first?",
+      "target_keys": [
+        "global.communication"
+      ],
+      "filters": {},
+      "notes": "Independently worded fact question with some indexed-word overlap; no synonym engine is present."
+    },
+    {
+      "id": "q67",
+      "group": "paraphrase_shared_words",
+      "query": "Where should API credentials be kept safely?",
+      "target_keys": [
+        "global.security"
+      ],
+      "filters": {},
+      "notes": "Independently worded fact question with some indexed-word overlap; no synonym engine is present."
+    },
+    {
+      "id": "q68",
+      "group": "paraphrase_shared_words",
+      "query": "Which JavaScript installer is preferred when starting a new repo?",
+      "target_keys": [
+        "global.bun"
+      ],
+      "filters": {},
+      "notes": "Independently worded fact question with some indexed-word overlap; no synonym engine is present."
+    },
+    {
+      "id": "q69",
+      "group": "paraphrase_shared_words",
+      "query": "Why send MCP diagnostics away from stdout?",
+      "target_keys": [
+        "machine.logs"
+      ],
+      "filters": {},
+      "notes": "Independently worded fact question with some indexed-word overlap; no synonym engine is present."
+    },
+    {
+      "id": "q70",
+      "group": "paraphrase_shared_words",
+      "query": "What protects private backup files before restore?",
+      "target_keys": [
+        "machine.backup"
+      ],
+      "filters": {},
+      "notes": "Independently worded fact question with some indexed-word overlap; no synonym engine is present."
+    },
+    {
+      "id": "q71",
+      "group": "paraphrase_no_overlap",
+      "query": "Which dependency tool should run build commands?",
+      "target_keys": [
+        "atlas.package"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": "The target answers this question, but approximate indexed-field surface token overlap is zero. Expected limitation probe, not a keyword correctness assertion."
+    },
+    {
+      "id": "q72",
+      "group": "paraphrase_no_overlap",
+      "query": "Why avoid direct participant connections during video conferences?",
+      "target_keys": [
+        "beacon.sfu"
+      ],
+      "filters": {
+        "project": "beacon"
+      },
+      "notes": "The target answers this question, but approximate indexed-field surface token overlap is zero. Expected limitation probe, not a keyword correctness assertion."
+    },
+    {
+      "id": "q73",
+      "group": "paraphrase_no_overlap",
+      "query": "How must user access rights be checked prior to opening live sockets?",
+      "target_keys": [
+        "cascade.auth"
+      ],
+      "filters": {
+        "project": "cascade"
+      },
+      "notes": "The target answers this question, but approximate indexed-field surface token overlap is zero. Expected limitation probe, not a keyword correctness assertion."
+    },
+    {
+      "id": "q74",
+      "group": "paraphrase_no_overlap",
+      "query": "Where should resumption positions persist? When must those positions expire?",
+      "target_keys": [
+        "drift.cache"
+      ],
+      "filters": {
+        "project": "drift"
+      },
+      "notes": "The target answers this question, but approximate indexed-field surface token overlap is zero. Expected limitation probe, not a keyword correctness assertion."
+    },
+    {
+      "id": "q75",
+      "group": "paraphrase_no_overlap",
+      "query": "Which geography hosts servers, plus what outgoing network destinations remain permitted?",
+      "target_keys": [
+        "ember.deployment"
+      ],
+      "filters": {
+        "project": "ember"
+      },
+      "notes": "The target answers this question, but approximate indexed-field surface token overlap is zero. Expected limitation probe, not a keyword correctness assertion."
+    },
+    {
+      "id": "q76",
+      "group": "paraphrase_no_overlap",
+      "query": "How often must disaster copies be exercised away from live storage?",
+      "target_keys": [
+        "cascade.backup"
+      ],
+      "filters": {
+        "project": "cascade"
+      },
+      "notes": "The target answers this question, but approximate indexed-field surface token overlap is zero. Expected limitation probe, not a keyword correctness assertion."
+    },
+    {
+      "id": "q77",
+      "group": "paraphrase_no_overlap",
+      "query": "Which accented sample string demonstrates correct international character handling?",
+      "target_keys": [
+        "forge.unicode"
+      ],
+      "filters": {
+        "project": "forge"
+      },
+      "notes": "The target answers this question, but approximate indexed-field surface token overlap is zero. Expected limitation probe, not a keyword correctness assertion."
+    },
+    {
+      "id": "q78",
+      "group": "paraphrase_no_overlap",
+      "query": "How can relevance scores prefer brief choices rather than verbose repetitions?",
+      "target_keys": [
+        "atlas.ranking"
+      ],
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": "The target answers this question, but approximate indexed-field surface token overlap is zero. Expected limitation probe, not a keyword correctness assertion."
+    },
+    {
+      "id": "q79",
+      "group": "paraphrase_no_overlap",
+      "query": "Lead brief status messages by results, then explain execution.",
+      "target_keys": [
+        "global.communication"
+      ],
+      "filters": {},
+      "notes": "The target answers this question, but approximate indexed-field surface token overlap is zero. Expected limitation probe, not a keyword correctness assertion."
+    },
+    {
+      "id": "q80",
+      "group": "paraphrase_no_overlap",
+      "query": "Which output channel carries protocol traffic, versus operational warnings?",
+      "target_keys": [
+        "machine.logs"
+      ],
+      "filters": {},
+      "notes": "The target answers this question, but approximate indexed-field surface token overlap is zero. Expected limitation probe, not a keyword correctness assertion."
+    }
+  ],
+  "diagnostic_queries": [
+    {
+      "id": "broad-cache",
+      "kind": "broad",
+      "query": "cache SQLite",
+      "filters": {
+        "project": "atlas"
+      },
+      "notes": "Many corpus records are plausibly relevant; no arbitrary single target is labelled."
+    },
+    {
+      "id": "broad-sfu",
+      "kind": "broad",
+      "query": "WebRTC SFU",
+      "filters": {
+        "project": "beacon"
+      },
+      "notes": "Repeated technical topic has many plausible matches; no target-ranking claim."
+    },
+    {
+      "id": "broad-progress",
+      "kind": "broad",
+      "query": "progress concise",
+      "filters": {},
+      "notes": "Multiple preferences and background reports can be relevant."
+    },
+    {
+      "id": "no-match",
+      "kind": "negative",
+      "query": "platypus origami zeppelin",
+      "filters": {},
+      "expect_empty": true
+    },
+    {
+      "id": "punctuation-only",
+      "kind": "negative",
+      "query": "!! ... () [] \"\"",
+      "filters": {},
+      "expect_empty": true
+    },
+    {
+      "id": "blank",
+      "kind": "negative",
+      "query": "   ",
+      "filters": {},
+      "expect_empty": true
+    },
+    {
+      "id": "oversize-query",
+      "kind": "validation",
+      "query": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "filters": {},
+      "expected_error": "exceeds the supported length"
+    },
+    {
+      "id": "wrong-query-type",
+      "kind": "validation",
+      "query": 42,
+      "filters": {},
+      "expected_error": "query must be a string"
+    },
+    {
+      "id": "missing-project-context",
+      "kind": "validation",
+      "query": "Bun",
+      "filters": {
+        "scope": "project"
+      },
+      "expected_error": "requires a project identifier"
+    }
+  ],
+  "filter_checks": [
+    {
+      "id": "context-atlas",
+      "query": "upstream compatibility",
+      "filters": {
+        "project": "atlas"
+      },
+      "expected_present_keys": [
+        "atlas.package"
+      ],
+      "expected_absent_keys": [
+        "beacon.package",
+        "cascade.package",
+        "drift.package",
+        "ember.package",
+        "forge.package"
+      ]
+    },
+    {
+      "id": "context-beacon",
+      "query": "upstream compatibility",
+      "filters": {
+        "project": "beacon"
+      },
+      "expected_present_keys": [
+        "beacon.package"
+      ],
+      "expected_absent_keys": [
+        "atlas.package",
+        "cascade.package",
+        "drift.package",
+        "ember.package",
+        "forge.package"
+      ]
+    },
+    {
+      "id": "context-cascade",
+      "query": "upstream compatibility",
+      "filters": {
+        "project": "cascade"
+      },
+      "expected_present_keys": [
+        "cascade.package"
+      ],
+      "expected_absent_keys": [
+        "atlas.package",
+        "beacon.package",
+        "drift.package",
+        "ember.package",
+        "forge.package"
+      ]
+    },
+    {
+      "id": "context-drift",
+      "query": "upstream compatibility",
+      "filters": {
+        "project": "drift"
+      },
+      "expected_present_keys": [
+        "drift.package"
+      ],
+      "expected_absent_keys": [
+        "atlas.package",
+        "beacon.package",
+        "cascade.package",
+        "ember.package",
+        "forge.package"
+      ]
+    },
+    {
+      "id": "context-ember",
+      "query": "upstream compatibility",
+      "filters": {
+        "project": "ember"
+      },
+      "expected_present_keys": [
+        "ember.package"
+      ],
+      "expected_absent_keys": [
+        "atlas.package",
+        "beacon.package",
+        "cascade.package",
+        "drift.package",
+        "forge.package"
+      ]
+    },
+    {
+      "id": "context-forge",
+      "query": "upstream compatibility",
+      "filters": {
+        "project": "forge"
+      },
+      "expected_present_keys": [
+        "forge.package"
+      ],
+      "expected_absent_keys": [
+        "atlas.package",
+        "beacon.package",
+        "cascade.package",
+        "drift.package",
+        "ember.package"
+      ]
+    },
+    {
+      "id": "inherited-global-machine",
+      "query": "Bun npm",
+      "filters": {
+        "project": "atlas"
+      },
+      "expected_present_keys": [
+        "atlas.package",
+        "global.bun",
+        "machine.runtime"
+      ],
+      "expected_absent_keys": [
+        "beacon.package",
+        "cascade.package",
+        "drift.package",
+        "ember.package",
+        "forge.package"
+      ]
+    },
+    {
+      "id": "explicit-project-only",
+      "query": "Bun npm",
+      "filters": {
+        "project": "atlas",
+        "scope": "project"
+      },
+      "expected_present_keys": [
+        "atlas.package"
+      ],
+      "expected_absent_keys": [
+        "global.bun",
+        "machine.runtime",
+        "beacon.package"
+      ]
+    },
+    {
+      "id": "no-project-context",
+      "query": "Bun npm",
+      "filters": {},
+      "expected_present_keys": [
+        "global.bun",
+        "machine.runtime"
+      ],
+      "expected_absent_keys": [
+        "atlas.package",
+        "beacon.package",
+        "cascade.package",
+        "drift.package",
+        "ember.package",
+        "forge.package"
+      ]
+    },
+    {
+      "id": "explicit-global",
+      "query": "Bun npm",
+      "filters": {
+        "scope": "global"
+      },
+      "expected_present_keys": [
+        "global.bun"
+      ],
+      "expected_absent_keys": [
+        "machine.runtime",
+        "atlas.package"
+      ]
+    },
+    {
+      "id": "explicit-machine",
+      "query": "Bun npm",
+      "filters": {
+        "scope": "machine"
+      },
+      "expected_present_keys": [
+        "machine.runtime"
+      ],
+      "expected_absent_keys": [
+        "global.bun",
+        "atlas.package"
+      ]
+    },
+    {
+      "id": "global-preference-category",
+      "query": "Bun npm",
+      "filters": {
+        "category": "preferences"
+      },
+      "expected_present_keys": [
+        "global.bun"
+      ],
+      "expected_absent_keys": [
+        "machine.runtime",
+        "atlas.package"
+      ]
+    },
+    {
+      "id": "project-category",
+      "query": "restore rehearsal",
+      "filters": {
+        "project": "atlas",
+        "category": "development_conventions"
+      },
+      "expected_present_keys": [
+        "atlas.backup"
+      ],
+      "expected_absent_keys": []
+    },
+    {
+      "id": "superseded-excluded",
+      "query": "meeting rooms WebRTC SFU",
+      "filters": {
+        "project": "atlas"
+      },
+      "expected_present_keys": [
+        "atlas.sfu"
+      ],
+      "expected_absent_keys": [
+        "atlas.historical"
+      ]
+    },
+    {
+      "id": "superseded-included",
+      "query": "PeerJS",
+      "filters": {
+        "project": "atlas",
+        "include_superseded": true
+      },
+      "expected_present_keys": [
+        "atlas.historical"
+      ],
+      "expected_absent_keys": []
+    },
+    {
+      "id": "historical-redis-excluded",
+      "query": "\"reconnect cursors\"",
+      "filters": {
+        "project": "beacon"
+      },
+      "expected_present_keys": [
+        "beacon.cache"
+      ],
+      "expected_absent_keys": [
+        "beacon.historical"
+      ]
+    },
+    {
+      "id": "historical-redis-included",
+      "query": "\"reconnect cursors\"",
+      "filters": {
+        "project": "beacon",
+        "include_superseded": true
+      },
+      "expected_present_keys": [
+        "beacon.cache",
+        "beacon.historical"
+      ],
+      "expected_absent_keys": []
+    },
+    {
+      "id": "expired-project-excluded",
+      "query": "temporary deployment waiver",
+      "filters": {
+        "project": "atlas",
+        "include_superseded": true
+      },
+      "expected_present_keys": [],
+      "expected_absent_keys": [
+        "atlas.expired"
+      ]
+    },
+    {
+      "id": "expired-global-excluded",
+      "query": "temporary npm workshop",
+      "filters": {
+        "scope": "global",
+        "include_superseded": true
+      },
+      "expected_present_keys": [],
+      "expected_absent_keys": [
+        "global.expired"
+      ]
+    },
+    {
+      "id": "listing-atlas",
+      "filters": {
+        "project": "atlas"
+      },
+      "expected_present_keys": [],
+      "expected_absent_keys": []
+    },
+    {
+      "id": "listing-beacon",
+      "filters": {
+        "project": "beacon"
+      },
+      "expected_present_keys": [],
+      "expected_absent_keys": []
+    },
+    {
+      "id": "listing-cascade",
+      "filters": {
+        "project": "cascade"
+      },
+      "expected_present_keys": [],
+      "expected_absent_keys": []
+    },
+    {
+      "id": "listing-drift",
+      "filters": {
+        "project": "drift"
+      },
+      "expected_present_keys": [],
+      "expected_absent_keys": []
+    },
+    {
+      "id": "listing-ember",
+      "filters": {
+        "project": "ember"
+      },
+      "expected_present_keys": [],
+      "expected_absent_keys": []
+    },
+    {
+      "id": "listing-forge",
+      "filters": {
+        "project": "forge"
+      },
+      "expected_present_keys": [],
+      "expected_absent_keys": []
+    },
+    {
+      "id": "listing-no-project",
+      "filters": {},
+      "expected_present_keys": [],
+      "expected_absent_keys": []
+    },
+    {
+      "id": "listing-global",
+      "filters": {
+        "scope": "global"
+      },
+      "expected_present_keys": [],
+      "expected_absent_keys": []
+    },
+    {
+      "id": "listing-machine",
+      "filters": {
+        "scope": "machine"
+      },
+      "expected_present_keys": [],
+      "expected_absent_keys": []
+    },
+    {
+      "id": "listing-project-only",
+      "filters": {
+        "project": "atlas",
+        "scope": "project"
+      },
+      "expected_present_keys": [],
+      "expected_absent_keys": []
+    }
+  ]
+}

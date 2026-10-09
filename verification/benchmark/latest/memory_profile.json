@@ -1,0 +1,30 @@
+{
+  "source": "Linux /proc/<own MCP child>/status VmRSS and VmHWM",
+  "unit": "KiB (Linux /proc reports kB in 1024-byte units)",
+  "database_records": 10000,
+  "warmup_recalls": 20,
+  "measured_recalls": 200,
+  "startup_ms": 814.6714698523283,
+  "startup_samples": 1,
+  "idle": {
+    "rss_kib": 51844,
+    "high_water_kib": 51844
+  },
+  "after_recalls": {
+    "rss_kib": 53084,
+    "high_water_kib": 54596
+  },
+  "after_integrity_check": {
+    "rss_kib": 53084,
+    "high_water_kib": 54652
+  },
+  "max_sampled_recall_rss_kib": 53576,
+  "server_process_closed": true,
+  "limitations": [
+    "A new process with ordinary OS cache; not a cold-disk-cache experiment.",
+    "RSS includes shared pages and does not equal private physical RAM.",
+    "One server process and one authored query mix; workload-dependent.",
+    "Integrity-check peak reported separately from normal recall.",
+    "These extra profile calls are not included in the main benchmark's timed-operation totals."
+  ]
+}

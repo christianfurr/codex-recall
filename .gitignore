@@ -1,4 +1,6 @@
 .venv/
+.bench-venv/
+verification/benchmark/latest/data/
 __pycache__/
 *.py[cod]
 *.egg-info/
@@ -16,3 +18,4 @@ dist/
 .coverage
 verification/private/
 verification/*.log
+verification/benchmark/**/*.log

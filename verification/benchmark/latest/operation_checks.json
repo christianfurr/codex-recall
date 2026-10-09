@@ -1,0 +1,69 @@
+{
+  "mcp": {
+    "six_tools_discoverable": true,
+    "reference_only_notice": true,
+    "normalized_duplicate_same_id": true,
+    "updated_same_id": true,
+    "updated_in_listing": true,
+    "mcp_sqlite_and_fts_integrity": true,
+    "deleted_acknowledged": true,
+    "deleted_absent": true,
+    "synthetic_secret_attempts": 5,
+    "synthetic_secret_rejected_without_echo": 5,
+    "query_injection_returned_reference_data": true,
+    "acknowledged_record_survives_sigkill": true,
+    "restart_integrity": true
+  },
+  "concurrency": {
+    "before": {
+      "total": 10000,
+      "distinct_ids": 10000,
+      "active_duplicate_groups": 0,
+      "sqlite_integrity": "ok",
+      "foreign_key_errors": 0
+    },
+    "after": {
+      "total": 11201,
+      "distinct_ids": 11201,
+      "active_duplicate_groups": 0,
+      "sqlite_integrity": "ok",
+      "foreign_key_errors": 0
+    },
+    "unique_created": 1200,
+    "shared_duplicate_ids": 1,
+    "expected_final_count": 11201,
+    "final_count_matches": true,
+    "project_leaks": 0,
+    "worker_exit_codes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "expected_unique_created": 1200,
+    "expected_duplicate_attempts": 160,
+    "expected_duplicate_hits": 159,
+    "expected_updates": 400,
+    "workload_operation_counts_match": true,
+    "all_unique_writes_created": true,
+    "duplicate_hits_match": true,
+    "all_updates_completed": true,
+    "passed": true
+  },
+  "robustness": {
+    "superseded_hidden_by_default": true,
+    "superseded_available_explicitly": true,
+    "expired_hidden_even_with_history": true,
+    "unscoped_has_no_project_records": true,
+    "scoped_has_no_other_projects": true,
+    "data_injection_did_not_change_schema": true,
+    "invalid_identifier_rejected": true,
+    "restored_all_records_identical": true,
+    "restored_search_matches": true,
+    "restored_integrity_ok": true,
+    "distinct_ids_equal_total": true,
+    "no_active_duplicate_groups": true,
+    "sqlite_integrity_ok": true,
+    "foreign_keys_ok": true
+  }
+}

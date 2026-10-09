@@ -1,0 +1,8 @@
+Synthetic bounded benchmark; measured operations used isolated databases with no personal memories, real credentials or external services. The normal memory database was read only for before/after isolation verification.
+Generated fixture/background content is deterministic; all reported timings are actual measurements.
+Scale write throughput is count/elapsed for each segment, including explicit supersession writes; checkpoint warmups and recall/status checks are excluded from write time.
+Engine and MCP recall phases cycle the same 20 query arguments; 20 unrecorded warmup recalls per phase/checkpoint.
+These are warmed workloads on one machine with ordinary OS caches; no cold-cache or cross-machine claim.
+Concurrency uses independent OS processes, a fixed per-100 operation mix, and first-error capture; memory_status performs integrity checks and is intentionally more expensive.
+MCP crash/restart kills only this benchmark's own child after an acknowledged remember response.
+resource.ru_maxrss is a raw diagnostic contaminated by the launcher pre-exec high-water mark (543432 KiB). It must not be reported as service or benchmark memory. This original run has no /proc peak sample; the updated script measures /proc VmHWM/VmRSS for future runs.

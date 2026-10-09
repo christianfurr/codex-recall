@@ -23,6 +23,8 @@ Memory is selective: Codex decides which confirmed facts are worth saving. The s
 Codex → MCP stdio → Python memory engine → SQLite + FTS5 → persistent memory.db
 ```
 
+[Measured results and graphs](docs/benchmark-results.md) · [Reproduce the benchmark](docs/benchmark-methodology.md)
+
 ## Getting started
 
 Requires Ubuntu/Linux, Python 3.10+, SQLite with FTS5, and an installed Codex CLI with MCP support. Installation uses an isolated `.venv`, exact pinned dependencies, and no sudo. Dependency installation requires access to PyPI or a populated local package cache; normal service operation needs no network.
@@ -221,6 +223,16 @@ PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
 ```
 
 Tests use temporary databases and include the official MCP Python client over real stdio subprocesses. Python-server integration and actual Codex discovery are separate checks; inspect [verification notes](docs/verification.md) for what ran on the release machine. To verify your installed Codex without requesting a model turn, run `.venv/bin/python scripts/verify_codex.py`; it calls all six tools across two ephemeral Codex app-server processes and removes its temporary sentinel. CI is configured for supported Python versions, but a configured matrix is not evidence that every version has already passed.
+
+## Measured results
+
+A local synthetic run loaded **10,000 memories** and completed **15,160 timed operations with zero measured errors**. At 10,000 records, warm engine recall had a **1.24 ms median** and **3.72 ms p95**; real MCP stdio recalls had a **3.56 ms median** across 200 calls.
+
+All **58 authored lexical cases** ranked their target first. Paraphrases without word overlap found **0/10 targets**, reflecting the keyword engine's limits. Four concurrent worker processes passed the storage checks, with write p99 **183 ms** and update p99 **534 ms**. These measurements describe one machine and workload; they are not general search accuracy or a latency guarantee.
+
+[Read the results, failures, and raw evidence](docs/benchmark-results.md), or [run the benchmark yourself](docs/benchmark-methodology.md).
+
+[![Benchmark overview](verification/benchmark/latest/charts/benchmark-overview.png)](docs/benchmark-results.md)
 
 ## Contributing
 

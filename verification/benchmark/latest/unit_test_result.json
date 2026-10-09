@@ -1,0 +1,7 @@
+{
+  "command": ".venv/bin/python -m unittest discover -s tests -v",
+  "tests_run": 71,
+  "elapsed_seconds": 9.016,
+  "result": "OK",
+  "script_compileall": "passed"
+}

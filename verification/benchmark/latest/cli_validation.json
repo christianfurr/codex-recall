@@ -1,0 +1,59 @@
+{
+  "benchmark_script_sha256": "8425069df1fef58d39e1591c1dec01b4c3abfccd1464148116eab4397b8a63c3",
+  "parameters": {
+    "records": 100,
+    "recalls": 20,
+    "mcp_recalls": 20,
+    "workers": 2,
+    "concurrent_operations_per_worker": 100
+  },
+  "return_code": 0,
+  "repeat_existing_output_return_code": 2,
+  "duration_seconds": 3.628898011520505,
+  "timed_operations": 340,
+  "timed_errors": 0,
+  "overall_passed": true,
+  "concurrency_checks": {
+    "before": {
+      "total": 100,
+      "distinct_ids": 100,
+      "active_duplicate_groups": 0,
+      "sqlite_integrity": "ok",
+      "foreign_key_errors": 0
+    },
+    "after": {
+      "total": 161,
+      "distinct_ids": 161,
+      "active_duplicate_groups": 0,
+      "sqlite_integrity": "ok",
+      "foreign_key_errors": 0
+    },
+    "unique_created": 60,
+    "shared_duplicate_ids": 1,
+    "expected_final_count": 161,
+    "final_count_matches": true,
+    "project_leaks": 0,
+    "worker_exit_codes": [
+      0,
+      0
+    ],
+    "expected_unique_created": 60,
+    "expected_duplicate_attempts": 8,
+    "expected_duplicate_hits": 7,
+    "expected_updates": 20,
+    "workload_operation_counts_match": true,
+    "all_unique_writes_created": true,
+    "duplicate_hits_match": true,
+    "all_updates_completed": true,
+    "passed": true
+  },
+  "process_memory": {
+    "starting_process_memory": {
+      "proc_vmrss_kib": 25900,
+      "proc_vmhwm_kib": 25900
+    },
+    "proc_vmrss_kib": 56548,
+    "proc_vmhwm_kib": 56548
+  },
+  "independent_review": "A second reviewer independently ran the same small CLI parameters in a separate TemporaryDirectory; verified 340 raw rows, scale=100, strict expected counts and success before cleanup."
+}
