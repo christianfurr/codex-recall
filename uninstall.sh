@@ -30,3 +30,4 @@ PY
 fi
 rm -rf -- "$app_dir/.venv"
 echo 'Codex Recall removed. Source files and backups remain; memories are retained unless --delete-data was supplied. Start a new Codex session.'
+echo 'Saved keyring credentials and dedicated browser session files are retained; see docs/credentials.md for removal.'

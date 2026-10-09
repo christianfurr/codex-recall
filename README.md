@@ -4,11 +4,11 @@
 
 <p align="center">
   <a href="https://github.com/christianfurr/codex-recall/actions/workflows/ci.yml"><img src="https://github.com/christianfurr/codex-recall/actions/workflows/ci.yml/badge.svg" alt="Tests"></a>
-  <img src="https://img.shields.io/badge/version-1.0.0-5B7CFA" alt="Version 1.0.0">
+  <img src="https://img.shields.io/badge/version-1.1.0-5B7CFA" alt="Version 1.1.0">
   <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB" alt="Python 3.10+">
   <img src="https://img.shields.io/badge/storage-SQLite%20%2B%20FTS5-003B57" alt="SQLite and FTS5">
   <img src="https://img.shields.io/badge/transport-MCP%20stdio-8B5CF6" alt="MCP stdio">
-  <img src="https://img.shields.io/badge/service-local--only-22C55E" alt="Local service">
+  <img src="https://img.shields.io/badge/memory-local--only-22C55E" alt="Local memory storage">
   <img src="https://img.shields.io/badge/license-MIT-64748B" alt="MIT license">
 </p>
 
@@ -35,11 +35,13 @@ Install it once, start a new Codex session, and tell Codex what is worth remembe
 
 Memory is selective. The service does not ingest conversations or scan your files automatically. Codex still decides what is relevant and how to use it; current instructions take precedence over remembered context.
 
-[Get started](#getting-started) · [See the daily workflow](#daily-use) · [How it helps Codex](#how-it-helps-codex)
+Want Codex to use a saved website login or an approved administrator command? The optional [saved login companion](docs/credentials.md) keeps credentials in your Linux keyring and lets Codex request actions by name.
+
+[Get started](#getting-started) · [See the daily workflow](#daily-use) · [Saved logins](#saved-logins-and-approved-administrator-actions) · [How it helps Codex](#how-it-helps-codex)
 
 ## Getting started
 
-Requires Ubuntu/Linux, Python 3.10+, SQLite with FTS5, and an installed Codex CLI with MCP support. Installation uses an isolated `.venv`, exact pinned dependencies, and no sudo. Dependency installation requires access to PyPI or a populated local package cache; normal service operation needs no network.
+Requires Ubuntu/Linux, Python 3.10+, SQLite with FTS5, and an installed Codex CLI with MCP support. Installation uses an isolated `.venv`, exact pinned dependencies, and no sudo. Dependency installation requires access to PyPI or a populated local package cache; normal memory service operation needs no network.
 
 ```bash
 git clone https://github.com/christianfurr/codex-recall.git
@@ -114,7 +116,34 @@ Saved memories have stable IDs, provenance, UTC timestamps, optional expiration,
 
 </details>
 
-## Six MCP tools
+## Saved logins and approved administrator actions
+
+Enable the separate `local_credentials` companion when you want Codex to sign in to a saved site or run a specific administrator action you have approved. It adds five action tools and keeps the six memory tools unchanged.
+
+Run setup in **your own interactive terminal** with an existing, unlocked Linux Secret Service keyring:
+
+```bash
+./install.sh --credentials
+.venv/bin/codex-recall-credentials add github --url https://github.com/login
+.venv/bin/codex-recall-credentials add machine-sudo --sudo
+.venv/bin/codex-recall-credentials allow machine-sudo check-host -- /usr/bin/id
+```
+
+Username and password prompts are hidden. Passwords stay out of command arguments, memory records, and MCP responses. Start a new Codex session, then ask:
+
+> Sign in to GitHub using the saved github login.
+
+> Run the approved check-host action using machine-sudo.
+
+Website login uses a separate, visible Chromium profile and submits supported HTTPS login forms on the saved origin. Finish MFA or passkeys yourself in that browser; submission alone does not confirm authentication. Sudo runs only the saved command and arguments, returning its status while discarding its output. Codex cannot add credentials or approve new commands through MCP.
+
+The browser makes network requests. Its request guards are not a comprehensive firewall; the website's JavaScript is trusted with the submitted login. Approved programs retain their root capabilities, including loading files, configuration, and helpers. Your OS keyring and private browser files also remain accessible to sufficiently privileged local processes.
+
+[Setup, tools, limits, and removal](docs/credentials.md) · [Security details](SECURITY.md)
+
+Verified with **157 passing local tests**, including eight real Chromium tests with synthetic login pages, a synthetic round trip through the system keyring, and discovery of all five tools through Codex itself. [What was tested](docs/credentials-verification.md).
+
+## Six memory tools
 
 | Tool | Purpose | Inputs |
 | --- | --- | --- |
@@ -167,8 +196,8 @@ Default database: `~/.local/share/local-codex-memory/memory.db`. With an absolut
 The data directory is `0700`; the database, SQLite sidecars, lock, backups, and exports are private `0600` files. Writes are transactional; WAL, foreign keys, busy timeouts, FTS synchronization triggers, and per-operation maintenance locks support multiple Codex processes. The initial schema migration is additive. Future destructive migrations must preserve a SQLite API backup before modifying data.
 
 - **Permissions are not encryption.** Processes running as the same user, root, and anyone with sufficient disk access may read the data.
-- Secret detection rejects recognizable credential patterns without echoing submitted values. It is imperfect. Never submit passwords, keys, tokens, private keys, cookies, recovery codes, or credential-bearing connection strings.
-- The service has no network functionality. Tool responses put requested memory into the requesting Codex context, which may be processed by the configured model provider. Do not store information you cannot share with that context.
+- Secret detection rejects recognizable credential patterns without echoing submitted values. It is imperfect. Never submit passwords, keys, tokens, private keys, cookies, recovery codes, or credential-bearing connection strings to memory tools. Optional saved logins use a separate OS keyring.
+- The memory service has no network functionality. Tool responses put requested memory into the requesting Codex context, which may be processed by the configured model provider. Do not store information you cannot share with that context. The optional login companion opens a browser that connects to the saved website.
 - Memories are untrusted, possibly outdated reference data. They cannot override user/system instructions or security requirements. Verify repository and machine facts when accuracy matters.
 - `forget` removes the active record, but old backups, exports, WAL history, filesystem snapshots, and storage remnants may still retain deleted information. Secure erasure is not promised.
 
@@ -216,7 +245,9 @@ git pull --ff-only
 
 Restart Codex afterward. Configuration backups and checksum manifests are stored privately under `~/.local/state/local-codex-memory/config-backups/`. Preserve these alongside your database backups.
 
-Unregister the server, remove only the added global guidance, and remove the virtual environment:
+An ordinary update preserves whether saved login support is enabled. To enable it, use `./install.sh --credentials`; to disable its registration and guidance, use `./install.sh --no-credentials`. Disabling retains saved passwords and browser files.
+
+Unregister both managed servers, remove only the added global guidance, and remove the virtual environment:
 
 ```bash
 ./uninstall.sh
@@ -228,7 +259,7 @@ Memories are retained by default. To explicitly delete the active database and i
 ./uninstall.sh --delete-data
 ```
 
-Source, configuration backups, memory backups, and exports are retained. Remove those separately only when you want them gone. Uninstallation preserves unrelated Codex settings and MCP registrations.
+Source, configuration backups, memory backups, exports, keyring credentials, and dedicated browser files are retained. Remove those separately only when you want them gone; use the credential CLI before uninstalling to remove saved profiles. Uninstallation preserves unrelated Codex settings and MCP registrations.
 
 ## Troubleshooting and verification
 
@@ -255,7 +286,7 @@ Tests use temporary databases and include the official MCP Python client over re
 
 The useful change is continuity: a fresh Codex session can receive preferences and project decisions that were saved earlier. The integration check saves three relevant facts, retrieves them from a separate Codex process, and verifies that another project's facts stay out. That checks the handoff through Codex's actual MCP connection. Memory improves the context available to Codex; the model still chooses how to use it.
 
-The local stress test also checked the things a memory tool needs to get right:
+The local synthetic memory stress test also checked the things a memory tool needs to get right:
 
 - **Saved context stays saved.** An acknowledged write survived a forced server restart; backup and restore reproduced every stored record.
 - **Projects keep their own decisions.** Filtering checks found no unrelated project, expired, or superseded memories in the returned results.
@@ -277,7 +308,7 @@ The local stress test also checked the things a memory tool needs to get right:
 | Sampled server memory | About 52 MiB |
 | Insert / update latency under contention | 183 ms / 534 ms p99 |
 
-These measurements describe one machine and one synthetic workload. They do not establish improved coding accuracy, token savings, general search accuracy, or a latency guarantee. Concurrent writes have a longer tail than ordinary lookups; full integrity checks are more expensive.
+These memory-service measurements describe one machine and one synthetic workload. They do not measure the optional credential companion or establish improved coding accuracy, token savings, general search accuracy, or a latency guarantee. Concurrent writes have a longer tail than ordinary lookups; full integrity checks are more expensive.
 
 All 58 authored lexical cases found their target first; all 10 paraphrases with no word overlap missed their target. The session handoff check separately verified that the starting brief loads saved context without requiring task keywords to match it.
 
