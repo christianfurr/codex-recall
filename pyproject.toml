@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codex-recall"
+version = "1.0.0"
+description = "Selective, local-first persistent memory for Codex over MCP stdio"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = ["mcp==1.30.0", "tomli==2.4.0; python_version < '3.11'"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: POSIX :: Linux",
+  "Topic :: Database",
+]
+
+[project.scripts]
+codex-recall = "codex_memory.server:main"
+codex-recall-admin = "codex_memory.maintenance:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

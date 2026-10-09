@@ -1,0 +1,10 @@
+{
+  "synthetic_memories": 5000,
+  "write_seconds": 36.046,
+  "searches": 100,
+  "median_recall_ms": 0.887,
+  "max_recall_ms": 1.709,
+  "sqlite_integrity": "ok",
+  "fts_integrity": "ok",
+  "note": "Warm local engine benchmark; not an end-to-end MCP startup measurement."
+}
