@@ -95,3 +95,35 @@ class ConfigurationTests(unittest.TestCase):
         self.assertEqual(override.read_text().count("BEGIN CODEX RECALL"), 1)
         self.invoke("uninstall")
         self.assertEqual(override.read_bytes(), b'New owner rules.\n')
+
+    def test_saved_logins_are_opt_in_preserved_on_rerun_and_removed_on_uninstall(self):
+        self.invoke("install")
+        self.assertNotIn("local_credentials", parse((self.home / "config.toml").read_bytes())["mcp_servers"])
+        edit("install", self.app, self.home, self.state, self.db, credentials=True)
+        installed = parse((self.home / "config.toml").read_bytes())
+        self.assertEqual(installed["mcp_servers"]["local_credentials"]["args"], ["-m", "codex_memory.credentials_server"])
+        self.assertEqual(installed["mcp_servers"]["local_credentials"]["env_vars"],
+                         ["DBUS_SESSION_BUS_ADDRESS", "XDG_RUNTIME_DIR", "DISPLAY", "WAYLAND_DISPLAY", "XAUTHORITY", "XDG_DATA_HOME", "CHROME_DEVEL_SANDBOX"])
+        self.assertEqual(installed["mcp_servers"]["local_credentials"]["tool_timeout_sec"], 90)
+        self.assertIn("Saved logins", (self.home / "AGENTS.md").read_text())
+        self.assertEqual(self.invoke("install")["changed"], 0)
+        self.assertIn("local_credentials", parse((self.home / "config.toml").read_bytes())["mcp_servers"])
+        result = edit("install", self.app, self.home, self.state, self.db, credentials=False)
+        self.assertFalse(result["credentials_enabled"])
+        self.assertNotIn("local_credentials", parse((self.home / "config.toml").read_bytes())["mcp_servers"])
+        self.assertNotIn("Saved logins", (self.home / "AGENTS.md").read_text())
+        edit("install", self.app, self.home, self.state, self.db, credentials=True)
+        self.invoke("uninstall")
+        self.assertEqual((self.home / "config.toml").read_bytes(), self.config)
+        self.assertEqual((self.home / "AGENTS.md").read_bytes(), self.instructions)
+
+    def test_unmanaged_credentials_preserved_until_explicit_opt_in(self):
+        f = self.home / "config.toml"
+        original = self.config + b'[mcp_servers.local_credentials]\ncommand = "other"\n'
+        f.write_bytes(original)
+        self.invoke("install")
+        self.assertEqual(parse(f.read_bytes())["mcp_servers"]["local_credentials"], {"command": "other"})
+        with self.assertRaises(ValueError):
+            edit("install", self.app, self.home, self.state, self.db, credentials=True)
+        self.invoke("uninstall")
+        self.assertEqual(f.read_bytes(), original)

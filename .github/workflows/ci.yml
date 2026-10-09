@@ -4,7 +4,9 @@ permissions:
   contents: read
 jobs:
   test:
-    runs-on: ubuntu-latest
+    # Bundled Chromium can use its namespace sandbox on this supported image.
+    # Revisit before the ubuntu-22.04 runner retirement in April 2027.
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -15,7 +17,16 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
           cache: pip
-      - run: python -m pip install -r requirements.txt
+      - run: python -m pip install -r requirements-credentials.txt
       - run: python -m pip install --no-deps .
+      - run: python -m playwright install --with-deps chromium
+      - name: Check Chromium sandbox before using synthetic credentials
+        run: |
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          with sync_playwright() as playwright:
+              browser = playwright.chromium.launch(headless=True, chromium_sandbox=True)
+              browser.close()
+          PY
       - run: python -m unittest discover -s tests -v
       - run: python -m pip check

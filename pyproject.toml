@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "codex-recall"
-version = "1.0.0"
+version = "1.1.0"
 description = "Selective, local-first persistent memory for Codex over MCP stdio"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -19,6 +19,10 @@ classifiers = [
 [project.scripts]
 codex-recall = "codex_memory.server:main"
 codex-recall-admin = "codex_memory.maintenance:main"
+codex-recall-credentials = "codex_memory.credential_cli:main"
+
+[project.optional-dependencies]
+credentials = ["SecretStorage==3.5.0", "playwright==1.63.0"]
 
 [project.urls]
 Homepage = "https://github.com/christianfurr/codex-recall"

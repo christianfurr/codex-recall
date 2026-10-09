@@ -1,5 +1,9 @@
 # Release verification
 
+Version **1.1.0** adds an optional saved login companion. Its **159-test local suite**, real Chromium fixtures, native synthetic keyring round trip, and actual Codex discovery/action checks are recorded in [credential verification](credentials-verification.md). The memory measurements below describe the original 1.0.0 release.
+
+## Memory release 1.0.0
+
 Version **1.0.0**, verified locally on **2026-10-09** using Linux, Python **3.10.12**, SQLite **3.37.2**, official MCP Python SDK **1.30.0**, and Codex CLI **0.162.0-alpha.2**.
 
 | Check | Actual result |

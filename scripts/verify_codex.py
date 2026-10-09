@@ -26,14 +26,14 @@ EXPECTED = {"remember", "recall", "update_memory", "forget", "list_memories", "m
 
 
 class Codex:
-    def __init__(self, app: Path):
+    def __init__(self, app: Path, *, allowed_servers=("local_memory",)):
         config_path = Path(os.environ.get("CODEX_HOME", str(Path.home() / ".codex"))) / "config.toml"
         config = tomllib.loads(config_path.read_text())
-        if "local_memory" not in config.get("mcp_servers", {}):
+        if any(name not in config.get("mcp_servers", {}) for name in allowed_servers):
             raise RuntimeError("Install Codex Recall before running this verification.")
         command = ["codex", "app-server", "--stdio", "-c", "analytics.enabled=false"]
         for name in config.get("mcp_servers", {}):
-            if name != "local_memory":
+            if name not in allowed_servers:
                 command += ["-c", f'mcp_servers.{name}.enabled=false']
         for name in config.get("plugins", {}):
             command += ["-c", f'plugins.{name}.enabled=false']

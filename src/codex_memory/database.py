@@ -12,6 +12,7 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import Iterator
 
+from . import __version__
 from .migrations import SCHEMA_VERSION, migrate
 from .models import (
     PUBLIC_FIELDS, duplicate_key, normalize_memory, utc_now, validate_filters,
@@ -21,7 +22,7 @@ from .search import filter_sql, fts_queries
 from .security import secure_directory, secure_file, secure_sqlite_files
 
 
-SERVER_VERSION = "1.0.0"
+SERVER_VERSION = __version__
 
 
 def default_database_path() -> Path:
