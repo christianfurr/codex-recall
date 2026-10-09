@@ -14,7 +14,7 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from codex_memory.browser_logins import BrowserLogins, _Session, _browser_environment, _origin
+from codex_memory.browser_logins import BrowserLogins, _Session, _browser_environment, _origin, _secure_profile_tree
 from codex_memory.credentials import CredentialError
 
 
@@ -46,6 +46,41 @@ class FakeRoute:
 
 
 class BrowserGuardTests(unittest.IsolatedAsyncioTestCase):
+    async def test_profile_permission_repair_tolerates_a_concurrently_removed_file(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary) / "private"
+            directory.mkdir(mode=0o700)
+            vanished = directory / "transient-browser-file"
+            vanished.write_text("synthetic browser state")
+            remaining = directory / "retained-browser-file"
+            remaining.write_text("synthetic browser state")
+            remaining.chmod(0o644)
+            original_lstat = Path.lstat
+            removed = False
+
+            def racing_lstat(path, *args, **kwargs):
+                nonlocal removed
+                if path == vanished and not removed:
+                    path.unlink()
+                    removed = True
+                return original_lstat(path, *args, **kwargs)
+
+            with patch.object(Path, "lstat", racing_lstat):
+                _secure_profile_tree(directory)
+            self.assertTrue(removed)
+            self.assertFalse(vanished.exists())
+            self.assertEqual(remaining.stat().st_mode & 0o777, 0o600)
+
+    async def test_profile_permission_repair_still_rejects_unsafe_hard_link(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary) / "private"
+            directory.mkdir(mode=0o700)
+            file = directory / "browser-state"
+            file.write_text("synthetic browser state")
+            os.link(file, directory / "unexpected-link")
+            with self.assertRaises(ValueError):
+                _secure_profile_tree(directory)
+
     async def test_cross_origin_guard_switches_before_any_credentials_are_filled(self):
         engine = BrowserLogins()
         session = _Session(None, Path("unused"), PROFILE["origin"])
@@ -200,6 +235,7 @@ class RealSyntheticBrowserTests(unittest.IsolatedAsyncioTestCase):
             self.html = html
             result = await self.engine.login(dict(PROFILE))
             self.assertEqual(result["status"], "needs_attention")
+            self.assertEqual(result["reason"], "manual_sign_in_required")
             page = self.contexts[-1].pages[-1]
             self.assertEqual(await page.locator('input[type="password"]').input_value(), "")
         self.assertEqual(self.submissions, [])
@@ -220,6 +256,7 @@ class RealSyntheticBrowserTests(unittest.IsolatedAsyncioTestCase):
             self.html = html
             result = await self.engine.login(dict(PROFILE))
             self.assertEqual(result["status"], "needs_attention")
+            self.assertEqual(result["reason"], "manual_sign_in_required")
         self.assertEqual(self.submissions, [])
 
     async def test_redirect_and_cross_origin_frame_reject_before_filling(self):
@@ -227,10 +264,12 @@ class RealSyntheticBrowserTests(unittest.IsolatedAsyncioTestCase):
             self.redirect = redirect
             result = await self.engine.login(dict(PROFILE))
             self.assertEqual(result["status"], "needs_attention")
+            self.assertIn(PROFILE["alias"], self.engine._sessions)
         self.redirect = None
         self.html = FORM.replace('</body>', '<iframe src="https://other.example.test/frame"></iframe></body>')
         result = await self.engine.login(dict(PROFILE))
         self.assertEqual(result["status"], "needs_attention")
+        self.assertIn(PROFILE["alias"], self.engine._sessions)
         self.assertEqual(self.submissions, [])
         self.assertFalse(any(url.startswith("https://other.example.test") for url, _ in self.requests))
 
@@ -241,6 +280,7 @@ class RealSyntheticBrowserTests(unittest.IsolatedAsyncioTestCase):
             });</script></body>''')
         result = await self.engine.login(dict(PROFILE))
         self.assertEqual(result["status"], "needs_attention")
+        self.assertIn(PROFILE["alias"], self.engine._sessions)
         self.assertEqual(result["reason"], "form_changed")
         self.assertEqual(await self.contexts[-1].pages[-1].locator('[name="password"]').input_value(), "")
         self.assertEqual(self.submissions, [])

@@ -92,11 +92,21 @@ def _secure_profile_tree(directory: Path) -> None:
     for root, directories, files in os.walk(directory, followlinks=False):
         for name in directories:
             path = Path(root) / name
-            if not path.is_symlink():
-                secure_directory(path)
+            try:
+                if not path.is_symlink():
+                    secure_directory(path)
+            except FileNotFoundError:
+                # Chromium can remove a temporary directory after enumeration.
+                # Ownership, symlink and other permission errors still fail.
+                continue
         for name in files:
             path = Path(root) / name
-            info = path.lstat()
+            try:
+                info = path.lstat()
+            except FileNotFoundError:
+                # Chromium writes state using temporary files and renames.
+                # A disappeared entry needs no permission repair.
+                continue
             # Chromium uses internal singleton symlinks and socket files.
             # Never follow those or change their external targets.
             if stat.S_ISREG(info.st_mode):

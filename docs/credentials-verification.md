@@ -4,9 +4,9 @@ Version **1.1.0**, verified locally on **2026-10-09** with Linux, Python **3.10.
 
 | Check | Observed result |
 | --- | --- |
-| Full memory and credential suite | **157 passed, 0 failed**, approximately 22 seconds locally |
+| Full memory and credential suite | **159 passed, 0 failed**, approximately 23 seconds locally |
 | Credential store | 34 tests: strict metadata/payload validation, errors without secret values, replacement/revocation, private lock files, and concurrent processes |
-| Browser adapter | 16 tests, including **eight using real sandboxed Chromium** with synthetic HTTPS page fixtures |
+| Browser adapter | 18 tests, including **eight using real sandboxed Chromium** with synthetic HTTPS page fixtures |
 | Sudo runner | 15 tests with synthetic sudo/askpass programs; no real privileged commands |
 | Owner CLI | 11 tests: hidden prompts, interactive-only writes, rejection of password arguments, and fixed command approvals |
 | Credential MCP | Eight tests with official MCP transport and runtime cancellation/origin-race checks |
@@ -15,7 +15,7 @@ Version **1.1.0**, verified locally on **2026-10-09** with Linux, Python **3.10.
 | Installer rerun | No duplicate registration/guidance; unchanged installer rerun reported zero edits |
 | Dependencies | `pip check` passed; shell scripts passed syntax checks |
 
-Browser fixtures exercise submission, foreign origins and redirects, unsupported or ambiguous forms, form mutation, overridden submit actions, and attempted encoded HTTP exfiltration. The browser sandbox and normal TLS verification stay enabled; HTTPS fixture responses are intercepted by the test harness. This verifies the adapter's behavior, not authentication against a live website or comprehensive protection from hostile site code.
+Browser fixtures exercise submission, foreign origins and redirects, unsupported or ambiguous forms, form mutation, overridden submit actions, and attempted encoded HTTP exfiltration. The browser sandbox and normal TLS verification stay enabled; HTTPS fixture responses are intercepted by the test harness. Permission repair also has a deterministic test for browser state files disappearing during enumeration, while unsafe hardlinks remain rejected. This verifies the adapter's behavior, not authentication against a live website or comprehensive protection from hostile site code.
 
 Synthetic sudo tests verify one-use password delivery through a private FIFO, disconnected command input, discarded output, rejected executables/arguments, failures, timeouts, cancellation, and cleanup. No real sudo password or root command was used. Fixed action approval remains a trust decision about the approved program's behavior.
 
@@ -33,5 +33,7 @@ PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
 ```
 
 The last command requires an existing unlocked desktop keyring and installed `local_credentials` registration. It creates and removes two synthetic keyring items. Do not use real account credentials as test data.
+
+The complete suite also passed locally on CPython **3.14.8** (159 tests, no skips).
 
 Machine-readable evidence: [native keyring and Codex](../verification/credentials.json), [local suite](../verification/credentials-suite.json). The [CI workflow](../.github/workflows/ci.yml) installs optional dependencies and Chromium and runs the complete suite on Python 3.10–3.14. It uses the currently supported Ubuntu 22.04 runner so bundled Chromium can start its namespace sandbox, without changing system security policies. The credential-free browser preflight fails if the sandbox cannot start. Revisit the runner before its [scheduled retirement in April 2027](https://github.com/actions/runner-images/issues/14254). A configured matrix does not itself prove every version passed; see the published CI result once available.

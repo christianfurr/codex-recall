@@ -1,6 +1,6 @@
 # Release verification
 
-Version **1.1.0** adds an optional saved login companion. Its **157-test local suite**, real Chromium fixtures, native synthetic keyring round trip, and actual Codex discovery/action checks are recorded in [credential verification](credentials-verification.md). The memory measurements below describe the original 1.0.0 release.
+Version **1.1.0** adds an optional saved login companion. Its **159-test local suite**, real Chromium fixtures, native synthetic keyring round trip, and actual Codex discovery/action checks are recorded in [credential verification](credentials-verification.md). The memory measurements below describe the original 1.0.0 release.
 
 ## Memory release 1.0.0
 

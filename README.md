@@ -141,7 +141,7 @@ The browser makes network requests. Its request guards are not a comprehensive f
 
 [Setup, tools, limits, and removal](docs/credentials.md) · [Security details](SECURITY.md)
 
-Verified with **157 passing local tests**, including eight real Chromium tests with synthetic login pages, a synthetic round trip through the system keyring, and discovery of all five tools through Codex itself. [What was tested](docs/credentials-verification.md).
+Verified with **159 passing local tests**, including eight real Chromium tests with synthetic login pages, a synthetic round trip through the system keyring, and discovery of all five tools through Codex itself. [What was tested](docs/credentials-verification.md).
 
 ## Six memory tools
 
