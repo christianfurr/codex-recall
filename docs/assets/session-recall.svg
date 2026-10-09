@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="title desc">
+  <title id="title">A head start for your next Codex session</title>
+  <desc id="desc">An example workflow: save a Bun package manager preference, start a fresh Codex session, and make that preference available before the next task.</desc>
+  <defs>
+    <linearGradient id="background" x2="1" y2="1"><stop stop-color="#102922"/><stop offset="1" stop-color="#071713"/></linearGradient>
+    <linearGradient id="card" x2="0" y2="1"><stop stop-color="#16372b"/><stop offset="1" stop-color="#102a21"/></linearGradient>
+    <linearGradient id="accent" x2="1" y2="0"><stop stop-color="#b6f7d2"/><stop offset="1" stop-color="#59c7a0"/></linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#b5edd6" stroke-opacity=".035"/></pattern>
+  </defs>
+  <rect width="1200" height="380" rx="20" fill="url(#background)"/>
+  <rect width="1200" height="380" rx="20" fill="url(#grid)"/>
+  <g font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif">
+    <text x="34" y="44" fill="#f1fcf5" font-size="26" font-weight="700" letter-spacing="-.5">A head start for the next session</text>
+    <text x="35" y="68" fill="#b2cabc" font-size="15">Keep the decisions worth carrying forward.</text>
+    <g fill="url(#card)" stroke="#36614d" stroke-width="1">
+      <rect x="32" y="91" width="344" height="257" rx="16"/>
+      <rect x="428" y="91" width="344" height="257" rx="16"/>
+      <rect x="824" y="91" width="344" height="257" rx="16"/>
+    </g>
+    <g fill="none" stroke="url(#accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M389 218h26m-6-6 6 6-6 6"/>
+      <path d="M785 218h26m-6-6 6 6-6 6"/>
+    </g>
+    <g>
+      <rect x="52" y="111" width="28" height="28" rx="8" fill="#c0f3d6"/>
+      <text x="62" y="131" fill="#12382b" font-size="15" font-weight="750">1</text>
+      <text x="91" y="132" fill="#f1fcf5" font-size="20" font-weight="650">Save a useful decision</text>
+      <rect x="52" y="158" width="304" height="73" rx="10" fill="#244b39"/>
+      <path d="m68 230-5 10 21-10" fill="#244b39"/>
+      <text x="68" y="187" fill="#eefbf3" font-size="17">“Prefer Bun for my</text>
+      <text x="68" y="212" fill="#eefbf3" font-size="17">JavaScript projects.”</text>
+      <rect x="52" y="259" width="151" height="28" rx="14" fill="#193e30" stroke="#3b7058"/>
+      <circle cx="68" cy="273" r="4" fill="#8ee2b6"/>
+      <text x="80" y="278" fill="#cef0dc" font-size="13" font-weight="600">Saved locally</text>
+      <text x="52" y="321" fill="#b2cabc" font-size="14">One durable fact. Clear wording.</text>
+    </g>
+    <g>
+      <rect x="448" y="111" width="28" height="28" rx="8" fill="#c0f3d6"/>
+      <text x="458" y="131" fill="#12382b" font-size="15" font-weight="750">2</text>
+      <text x="487" y="132" fill="#f1fcf5" font-size="20" font-weight="650">Start a fresh session</text>
+      <rect x="448" y="158" width="304" height="73" rx="10" fill="#0c2119" stroke="#355c49"/>
+      <g fill="#527562"><circle cx="464" cy="174" r="3"/><circle cx="475" cy="174" r="3"/><circle cx="486" cy="174" r="3"/></g>
+      <text x="464" y="209" fill="#eefbf3" font-size="17">Set up the new app.</text>
+      <rect x="448" y="259" width="247" height="28" rx="14" fill="#193e30" stroke="#3b7058"/>
+      <path d="m460 273 4 4 7-8" fill="none" stroke="#8ee2b6" stroke-width="1.8" stroke-linecap="round"/>
+      <text x="481" y="278" fill="#cef0dc" font-size="13" font-weight="600">Check saved preferences</text>
+      <text x="448" y="321" fill="#b2cabc" font-size="14">A short memory check before work.</text>
+    </g>
+    <g>
+      <rect x="844" y="111" width="28" height="28" rx="8" fill="#c0f3d6"/>
+      <text x="854" y="131" fill="#12382b" font-size="15" font-weight="750">3</text>
+      <text x="883" y="132" fill="#f1fcf5" font-size="20" font-weight="650">Bring context forward</text>
+      <text x="844" y="184" fill="#8fd7b3" font-size="11" font-weight="750" letter-spacing="1.7">REMEMBERED PREFERENCE</text>
+      <text x="844" y="212" fill="#eefbf3" font-size="18" font-weight="600">Use Bun for JavaScript.</text>
+      <path d="M844 235h304" stroke="#345743"/>
+      <text x="844" y="268" fill="#cef0dc" font-size="15">Available before work begins.</text>
+      <text x="844" y="292" fill="#cef0dc" font-size="15">Apply it when relevant.</text>
+      <text x="844" y="321" fill="#b2cabc" font-size="14">Your current instructions still win.</text>
+    </g>
+  </g>
+</svg>

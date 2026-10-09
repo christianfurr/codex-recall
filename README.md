@@ -13,17 +13,28 @@
 
 # Codex Recall
 
-**Small, persistent memory for Codex. Your preferences, decisions, and useful lessons survive new sessions.**
+**Give your next Codex session a head start.**
 
-Codex Recall runs a Python MCP server over stdio and stores selected memories in a private SQLite database. Codex starts the process when it needs it. There is no daemon, web server, model download, embedding service, telemetry, or API key.
+Your package manager preference. The reason a project uses SQLite. The fix that finally solved a recurring setup problem. Codex Recall keeps these small, useful facts available after the conversation ends, so you spend less time explaining the same decisions again.
 
-Memory is selective: Codex decides which confirmed facts are worth saving. The service never ingests entire conversations or scans your files automatically. Memory does not guarantee that Codex will recall every fact in every session.
+Install it once, start a new Codex session, and tell Codex what is worth remembering. The installed guidance asks Codex to check a short list of preferences and project memories before substantial work, then search for context relevant to the task. Saved facts become starting context for the next session.
 
-```text
-Codex → MCP stdio → Python memory engine → SQLite + FTS5 → persistent memory.db
-```
+<p align="center">
+  <img src="docs/assets/session-recall.svg" alt="Save a useful decision, start a fresh Codex session, and bring the relevant context into the next task" width="960">
+</p>
 
-[Measured results and graphs](docs/benchmark-results.md) · [Reproduce the benchmark](docs/benchmark-methodology.md)
+| What you save | How it helps the next task |
+| --- | --- |
+| “I prefer Bun for JavaScript projects.” | Codex can see your package manager preference before setting up a project. |
+| “This project uses SQLite because it must work offline.” | Later work has the reason behind the architecture, as well as the choice. |
+| “Run tests in the repository's `.venv`.” | A later session can recover the setup convention before running commands. |
+| “The authentication refactor is waiting on the schema migration.” | A new session can recover a durable checkpoint and verify it against the current code. |
+
+**Local storage. Small context. Your control.** Codex starts a Python MCP process when needed; selected facts live in a private SQLite database. No always-running daemon, model download, embedding service, telemetry, or API key is required. You can browse, correct, replace, or delete memories.
+
+Memory is selective. The service does not ingest conversations or scan your files automatically. Codex still decides what is relevant and how to use it; current instructions take precedence over remembered context.
+
+[Get started](#getting-started) · [See the daily workflow](#daily-use) · [How it helps Codex](#how-it-helps-codex)
 
 ## Getting started
 
@@ -50,15 +61,30 @@ A healthy status reports `accessible: true`, `integrity: "ok"`, `fts_integrity: 
 
 ## Daily use
 
-Tell Codex something durable:
+Use ordinary language. Save the decision and its reason when it will matter again:
 
 > Remember that I prefer Bun over npm for my JavaScript projects.
 
-In a later session:
+> Remember for this project: keep SQLite because the app must work offline.
 
-> Create a Next.js project. Check my remembered preferences first.
+Then start a new session and work normally. The installed guidance asks Codex to load up to three global preferences and five project memories once before the session's first substantial task. It then uses a small keyword search for relevant details, with one shorter retry when needed. This gives the session useful starting context without pulling your whole memory database into every task.
 
-The corresponding tool calls are:
+The installer adds this workflow to [Codex's global startup guidance](https://learn.chatgpt.com/docs/agent-configuration/agents-md). Start a new session after installing or updating so the guidance takes effect.
+
+You can also ask explicitly:
+
+> Check my remembered preferences, then create a Next.js project.
+
+> What do you remember about this project's storage decisions?
+
+> Replace the old package manager decision with pnpm for this project.
+
+Good memories are confirmed preferences, decisions, important fixes, and stable setup facts. Include distinctive words such as `Bun`, `SQLite`, or the component name so a later search can find them. Avoid transient chatter, command logs, secrets, guesses, and information already easy to discover in the repository. Verify old facts against the current machine and code before relying on them.
+
+<details>
+<summary>What the MCP calls look like</summary>
+
+The preference example uses these tool calls:
 
 ```json
 {
@@ -83,9 +109,9 @@ The corresponding tool calls are:
 }
 ```
 
-These JSON examples describe MCP calls; you can simply ask Codex in ordinary language. Saved memories have stable IDs, provenance, UTC timestamps, optional expiration, and explicit supersession links.
+Saved memories have stable IDs, provenance, UTC timestamps, optional expiration, and explicit supersession links. The installed guidance also asks Codex to consider saving confirmed durable information after substantial work.
 
-The installed global guidance asks Codex to recall relevant context before substantial work and consider saving confirmed durable information afterward. Good candidates include preferences, architectural decisions, important fixes, and stable machine setup. Avoid transient chatter, every command, debugging noise, secrets, unsupported guesses, and facts already easy to discover in project files. Current instructions always take precedence over memory.
+</details>
 
 ## Six MCP tools
 
@@ -214,7 +240,7 @@ Source, configuration backups, memory backups, and exports are retained. Remove 
 | Integrity failure | Preserve the current data privately; restore a known-good SQLite API backup. Avoid manually deleting active WAL files. |
 | Python/FTS5 unavailable | Install a compatible Python/SQLite through your normal system setup; the installer reports the blocker and does not use sudo. |
 
-FTS5 matches keywords, quoted phrases, and explicit prefixes. It uses BM25 with modest project/category boosts and falls back from all-term matching to any-term matching. It does not understand meaning, paraphrases, or contradictions. Empty or irrelevant searches return no results; raw FTS operators are not passed through as executable syntax.
+FTS5 matches keywords, quoted phrases, and explicit prefixes. It uses BM25 with modest project/category boosts and falls back from all-term matching to any-term matching. It does not understand meaning, paraphrases, or contradictions. Empty queries return no results; queries with common shared words may return unrelated matches. Raw FTS operators are not passed through as executable syntax.
 
 Run the test suite locally:
 
@@ -224,15 +250,39 @@ PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
 
 Tests use temporary databases and include the official MCP Python client over real stdio subprocesses. Python-server integration and actual Codex discovery are separate checks; inspect [verification notes](docs/verification.md) for what ran on the release machine. To verify your installed Codex without requesting a model turn, run `.venv/bin/python scripts/verify_codex.py`; it calls all six tools across two ephemeral Codex app-server processes and removes its temporary sentinel. CI is configured for supported Python versions, but a configured matrix is not evidence that every version has already passed.
 
-## Measured results
+## How it helps Codex
 
-A local synthetic run loaded **10,000 memories** and completed **15,160 timed operations with zero measured errors**. At 10,000 records, warm engine recall had a **1.24 ms median** and **3.72 ms p95**; real MCP stdio recalls had a **3.56 ms median** across 200 calls.
+The useful change is continuity: a fresh Codex session can receive preferences and project decisions that were saved earlier. The integration check saves three relevant facts, retrieves them from a separate Codex process, and verifies that another project's facts stay out. That checks the handoff through Codex's actual MCP connection. Memory improves the context available to Codex; the model still chooses how to use it.
 
-All **58 authored lexical cases** ranked their target first. Paraphrases without word overlap found **0/10 targets**, reflecting the keyword engine's limits. Four concurrent worker processes passed the storage checks, with write p99 **183 ms** and update p99 **534 ms**. These measurements describe one machine and workload; they are not general search accuracy or a latency guarantee.
+The local stress test also checked the things a memory tool needs to get right:
 
-[Read the results, failures, and raw evidence](docs/benchmark-results.md), or [run the benchmark yourself](docs/benchmark-methodology.md).
+- **Saved context stays saved.** An acknowledged write survived a forced server restart; backup and restore reproduced every stored record.
+- **Projects keep their own decisions.** Filtering checks found no unrelated project, expired, or superseded memories in the returned results.
+- **Several sessions can share the database.** Four worker processes completed their mixed workload without measured errors or duplicate active records.
+- **Ordinary keyword lookups are quick.** The test loaded 10,000 synthetic memories and completed 15,160 measured operations with zero errors.
+
+**Use recognizable words.** Search matches keywords, phrases, and prefixes; it does not understand synonyms. The starting brief makes recent preferences and project decisions available even when a new task uses different words. For older facts, search with the names and terms they contain. Check that a returned fact actually applies before relying on it.
+
+[See the session handoff check](docs/workflow-verification.md) · [Read the stress-test results](docs/benchmark-results.md) · [Run the benchmark yourself](docs/benchmark-methodology.md)
+
+<details>
+<summary>Performance numbers and benchmark graphs</summary>
+
+| Measurement | Result |
+| --- | --- |
+| Warm engine recall at 10,000 records | 1.24 ms median; 3.72 ms p95 |
+| Recall through real MCP stdio | 3.56 ms median; 7.17 ms p95 |
+| Four concurrent workers | 286 mixed operations per second |
+| Sampled server memory | About 52 MiB |
+| Insert / update latency under contention | 183 ms / 534 ms p99 |
+
+These measurements describe one machine and one synthetic workload. They do not establish improved coding accuracy, token savings, general search accuracy, or a latency guarantee. Concurrent writes have a longer tail than ordinary lookups; full integrity checks are more expensive.
+
+All 58 authored lexical cases found their target first; all 10 paraphrases with no word overlap missed their target. The session handoff check separately verified that the starting brief loads saved context without requiring task keywords to match it.
 
 [![Benchmark overview](verification/benchmark/latest/charts/benchmark-overview.png)](docs/benchmark-results.md)
+
+</details>
 
 ## Contributing
 
