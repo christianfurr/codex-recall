@@ -15,7 +15,7 @@ Version **1.0.0**, verified locally on **2026-10-09** using Linux, Python **3.10
 | Backup / restore | Live-WAL snapshot, validated restore, rollback, malformed/corrupt backup refusal and exclusive locking tested |
 | Files | Private data directory, database, SQLite sidecars, backups and exports checked |
 | Package dependencies | `pip check` passed |
-| GitHub CI | Workflow prepared for Python 3.10–3.14; remote jobs have **not** run |
+| GitHub CI | **All five jobs passed** on Python 3.10–3.14: 71 tests and `pip check` per version ([public run](https://github.com/christianfurr/codex-recall/actions/runs/37947633639)) |
 
 Actual Codex verification used two ephemeral `codex app-server` processes reading the installed registration. Other MCP servers and plugins were disabled only in those verification processes. No model turn was requested, no API key was supplied, and the sentinel was removed. This verifies Codex's own discovery, transport and persistence; it does not test whether a model will always choose to remember or recall information without prompting. A desktop session restart may be needed to load the new tool list.
 
@@ -31,4 +31,4 @@ PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
 
 The Codex check requires an installed Codex CLI and an existing `local_memory` registration. It writes only a unique temporary expiring sentinel to the configured database. Run it when you want an integration check, not on every session.
 
-Machine-readable evidence: [Codex check](../verification/codex.json), [engine benchmark](../verification/performance.json). Personal database files, private configuration backups and local installation logs are excluded from release artifacts.
+Machine-readable evidence: [Codex check](../verification/codex.json), [engine benchmark](../verification/performance.json), [GitHub CI](../verification/github-ci.json). Personal database files, private configuration backups and local installation logs are excluded from release artifacts.
