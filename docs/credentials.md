@@ -18,7 +18,9 @@ codex mcp get local_credentials
 
 The installer downloads the pinned optional Python dependencies and Playwright Chromium. It does not use sudo or install system packages. A healthy credential status reports `available: true` and `locked: false`. Unlock your keyring through the desktop if it is locked. Start a new Codex session to load the additional tools and guidance.
 
-Start Codex from your desktop login session so it can reach the session keyring and display. The managed MCP registration forwards six desktop connection/data-directory variable names without saving their values: `DBUS_SESSION_BUS_ADDRESS`, `XDG_RUNTIME_DIR`, `DISPLAY`, `WAYLAND_DISPLAY`, `XAUTHORITY`, and `XDG_DATA_HOME`. This uses Codex's [documented `env_vars` setting](https://learn.chatgpt.com/docs/extend/mcp?surface=cli).
+Start Codex from your desktop login session so it can reach the session keyring and display. The managed MCP registration forwards desktop connection/data-directory variable names without saving their values: `DBUS_SESSION_BUS_ADDRESS`, `XDG_RUNTIME_DIR`, `DISPLAY`, `WAYLAND_DISPLAY`, `XAUTHORITY`, and `XDG_DATA_HOME`, plus the optional Chromium sandbox helper setting `CHROME_DEVEL_SANDBOX`. This uses Codex's [documented `env_vars` setting](https://learn.chatgpt.com/docs/extend/mcp?surface=cli).
+
+On Ubuntu systems where AppArmor prevents bundled Chromium from starting its sandbox, Chromium documents using an **already installed, protected Google Chrome sandbox helper** through `CHROME_DEVEL_SANDBOX=/opt/google/chrome/chrome-sandbox`. Set it in the desktop environment that launches Codex when needed. See [Chromium's sandbox guidance](https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md). This project does not change system security policies or disable the browser sandbox.
 
 ## Save a website login
 

@@ -103,7 +103,7 @@ class ConfigurationTests(unittest.TestCase):
         installed = parse((self.home / "config.toml").read_bytes())
         self.assertEqual(installed["mcp_servers"]["local_credentials"]["args"], ["-m", "codex_memory.credentials_server"])
         self.assertEqual(installed["mcp_servers"]["local_credentials"]["env_vars"],
-                         ["DBUS_SESSION_BUS_ADDRESS", "XDG_RUNTIME_DIR", "DISPLAY", "WAYLAND_DISPLAY", "XAUTHORITY", "XDG_DATA_HOME"])
+                         ["DBUS_SESSION_BUS_ADDRESS", "XDG_RUNTIME_DIR", "DISPLAY", "WAYLAND_DISPLAY", "XAUTHORITY", "XDG_DATA_HOME", "CHROME_DEVEL_SANDBOX"])
         self.assertEqual(installed["mcp_servers"]["local_credentials"]["tool_timeout_sec"], 90)
         self.assertIn("Saved logins", (self.home / "AGENTS.md").read_text())
         self.assertEqual(self.invoke("install")["changed"], 0)
