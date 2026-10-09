@@ -4,11 +4,9 @@ permissions:
   contents: read
 jobs:
   test:
-    runs-on: ubuntu-latest
-    env:
-      # Use the runner's existing Chrome helper for sandboxed bundled Chromium.
-      # No AppArmor policy or kernel settings are changed.
-      CHROME_DEVEL_SANDBOX: /opt/google/chrome/chrome-sandbox
+    # Bundled Chromium can use its namespace sandbox on this supported image.
+    # Revisit before the ubuntu-22.04 runner retirement in April 2027.
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -25,15 +23,7 @@ jobs:
       - name: Check Chromium sandbox before using synthetic credentials
         run: |
           python - <<'PY'
-          import os, stat
-          from pathlib import Path
           from playwright.sync_api import sync_playwright
-          helper = Path(os.environ['CHROME_DEVEL_SANDBOX'])
-          info = helper.stat()
-          assert info.st_uid == 0 and info.st_mode & stat.S_ISUID and not info.st_mode & 0o022
-          for parent in helper.parents:
-              info = parent.stat()
-              assert info.st_uid == 0 and not info.st_mode & 0o022
           with sync_playwright() as playwright:
               browser = playwright.chromium.launch(headless=True, chromium_sandbox=True)
               browser.close()
