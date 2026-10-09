@@ -20,5 +20,10 @@ classifiers = [
 codex-recall = "codex_memory.server:main"
 codex-recall-admin = "codex_memory.maintenance:main"
 
+[project.urls]
+Homepage = "https://github.com/christianfurr/codex-recall"
+Documentation = "https://github.com/christianfurr/codex-recall#readme"
+Issues = "https://github.com/christianfurr/codex-recall/issues"
+
 [tool.setuptools.packages.find]
 where = ["src"]

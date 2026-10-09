@@ -3,6 +3,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/christianfurr/codex-recall/actions/workflows/ci.yml"><img src="https://github.com/christianfurr/codex-recall/actions/workflows/ci.yml/badge.svg" alt="Tests"></a>
   <img src="https://img.shields.io/badge/version-1.0.0-5B7CFA" alt="Version 1.0.0">
   <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB" alt="Python 3.10+">
   <img src="https://img.shields.io/badge/storage-SQLite%20%2B%20FTS5-003B57" alt="SQLite and FTS5">
@@ -41,7 +42,7 @@ Memory is selective. The service does not ingest conversations or scan your file
 Requires Ubuntu/Linux, Python 3.10+, SQLite with FTS5, and an installed Codex CLI with MCP support. Installation uses an isolated `.venv`, exact pinned dependencies, and no sudo. Dependency installation requires access to PyPI or a populated local package cache; normal service operation needs no network.
 
 ```bash
-git clone <your-repository-url> codex-recall
+git clone https://github.com/christianfurr/codex-recall.git
 cd codex-recall
 ./install.sh
 ```
